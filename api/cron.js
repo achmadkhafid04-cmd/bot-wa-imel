@@ -3,7 +3,8 @@ const moment = require('moment-timezone');
 require('moment/locale/id');
 moment.locale('id');
 
-const { fetchSheetData } = require('./googleSheets');
+const { fetchSheetData } = require('../googleSheets');
+
 
 const formatWANumber = (number) => {
     if (!number) return null;
