@@ -3,11 +3,26 @@ const { JWT } = require('google-auth-library');
 require('dotenv').config();
 
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
-const credentials = require('./credentials.json');
+
+let clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+if (!clientEmail || !privateKey) {
+  try {
+    const credentials = require('./credentials.json');
+    clientEmail = credentials.client_email;
+    privateKey = credentials.private_key;
+  } catch (err) {
+    console.error("Kredensial tidak ditemukan! Pastikan GOOGLE_CLIENT_EMAIL dan GOOGLE_PRIVATE_KEY diisi.");
+  }
+} else {
+  // Perbaiki format baris baru (newline) jika ter-escape di Vercel
+  privateKey = privateKey.replace(/\\n/g, '\n');
+}
 
 const serviceAccountAuth = new JWT({
-  email: credentials.client_email,
-  key: credentials.private_key,
+  email: clientEmail,
+  key: privateKey,
   scopes: [
     'https://www.googleapis.com/auth/spreadsheets',
   ],
