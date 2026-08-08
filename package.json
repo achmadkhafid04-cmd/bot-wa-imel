@@ -1,0 +1,19 @@
+{
+  "name": "wa-bot-imel",
+  "version": "1.0.0",
+  "description": "WhatsApp Reminder Bot - OMAETEE COURSE",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "google-auth-library": "^11.0.0",
+    "google-spreadsheet": "^5.3.0",
+    "moment-timezone": "^0.6.3",
+    "node-cron": "^3.0.3"
+  }
+}
